@@ -5,7 +5,10 @@
         </div>
         <div class="content">
             <ConnectPage v-if="!isConnected"/>
-            <div v-else>device connected</div>
+            <ConnectedPage v-else/>
+        </div>
+        <div class="errors">
+            <div class="error" v-for="error in errors">{{error}}</div>
         </div>
     </div>
 </template>
@@ -13,9 +16,11 @@
 <script>
     import ToggleButton from 'vue-js-toggle-button/src/Button.vue';
     import ConnectPage from "./pages/ConnectPage";
+    import ConnectedPage from "./pages/ConnectedPage";
 
     const App = {
         components: {
+            ConnectedPage,
             ConnectPage,
             ToggleButton,
         },
@@ -23,6 +28,10 @@
         computed: {
             isConnected() {
                 return this.$store.state.isConnected
+            },
+
+            errors() {
+                return this.$store.state.error;
             }
         }
     };
@@ -38,5 +47,14 @@
         text-align: center;
         color: #2c3e50;
         margin-top: 60px;
+    }
+
+    .errors {
+        position: fixed;
+        bottom: 50px;
+        left: 15px;
+        right: 15px;
+        color: red;
+        pointer-events: none;
     }
 </style>
