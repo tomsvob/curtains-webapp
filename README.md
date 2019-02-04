@@ -1,4 +1,5 @@
-# curtains-js
+# curtains-webapp
+Vue.js + Vuex webapp for controlling Arduino via Bluetooth
 
 ## Project setup
 ```
